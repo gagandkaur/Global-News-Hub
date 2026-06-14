@@ -5,7 +5,11 @@ function NewsCard({ title, description, image, link }) {
 
       <h3>{title}</h3>
 
-      <p>{description}</p>
+    <p>
+  {description
+    ? description.substring(0, 120) + "..."
+    : "No description available for this article."}
+</p>
 
       <a href={link} target="_blank" rel="noreferrer">
         <button>Read More</button>

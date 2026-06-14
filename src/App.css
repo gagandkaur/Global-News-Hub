@@ -229,16 +229,13 @@ body{
 }
 
 .news-card{
+  width:320px;
+  min-height:520px;
+
   background:white;
-
-  border-radius:24px;
-
+  border-radius:20px;
   overflow:hidden;
-
-  box-shadow:
-  0 10px 30px rgba(0,0,0,.08);
-
-  transition:.35s;
+  box-shadow:0 8px 25px rgba(0,0,0,0.08);
 
   display:flex;
   flex-direction:column;
@@ -262,19 +259,25 @@ body{
 }
 
 .news-card p{
-  padding:0 15px 15px;
+  padding:0 15px;
   color:#6b7280;
+  line-height:1.6;
 
-  min-height:120px;
+  flex:1;
 
+  display:-webkit-box;
+  -webkit-line-clamp:4;
+  -webkit-box-orient:vertical;
   overflow:hidden;
 }
 
 .news-card button{
   margin:15px;
+  margin-top:auto;
+
   padding:12px 22px;
   border:none;
-  border-radius:8px;
+  border-radius:10px;
   background:#c67c4e;
   color:white;
   cursor:pointer;

@@ -29,9 +29,17 @@ function App() {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-        setArticles(data.results || []);
-      })
+  console.log(data);
+
+  const filteredArticles = (data.results || []).filter(
+    (article) =>
+      article.title &&
+      article.description &&
+      article.description.trim() !== ""
+  );
+
+  setArticles(filteredArticles);
+})
       .catch((error) => console.log(error));
   };
 
