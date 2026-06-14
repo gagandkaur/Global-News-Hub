@@ -25,8 +25,7 @@ function App() {
     if (category !== "") {
       url += `&category=${category}`;
     }
-
-    .then((data) => {
+.then((data) => {
   console.log(data);
 
   const filteredArticles = (data.results || [])
@@ -48,12 +47,7 @@ function App() {
 
   setArticles(filteredArticles);
 })
-
-  setArticles(filteredArticles);
-})
-      .catch((error) => console.log(error));
-  };
-
+.catch((error) => console.log(error));
   useEffect(() => {
     fetchNews(search);
   }, [region, category]);
