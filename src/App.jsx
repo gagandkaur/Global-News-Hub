@@ -22,35 +22,39 @@ function App() {
       url += `&country=${region}`;
     }
 
-    if (category !== "") {
-      url += `&category=${category}`;
-    }
-.then((data) => {
-  console.log(data);
+  if (category !== "") {
+  url += `&category=${category}`;
+}
 
-  const filteredArticles = (data.results || [])
-    .filter(
-      (article) =>
-        article.title &&
-        article.description &&
-        article.description.trim() !== ""
-    )
-    .filter(
-      (article, index, self) =>
-        index ===
-        self.findIndex(
-          (a) =>
-            a.title === article.title ||
-            a.link === article.link
-        )
-    );
+fetch(url)
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data);
 
-  setArticles(filteredArticles);
-})
-.catch((error) => console.log(error));
-  useEffect(() => {
-    fetchNews(search);
-  }, [region, category]);
+    const filteredArticles = (data.results || [])
+      .filter(
+        (article) =>
+          article.title &&
+          article.description &&
+          article.description.trim() !== ""
+      )
+      .filter(
+        (article, index, self) =>
+          index ===
+          self.findIndex(
+            (a) =>
+              a.title === article.title ||
+              a.link === article.link
+          )
+      );
+
+    setArticles(filteredArticles);
+  })
+  .catch((error) => console.log(error));
+};
+useEffect(() => {
+  fetchNews(search);
+}, [region, category]);
 
   return (
     <>
