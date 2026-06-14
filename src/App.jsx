@@ -26,17 +26,28 @@ function App() {
       url += `&category=${category}`;
     }
 
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
+    .then((data) => {
   console.log(data);
 
-  const filteredArticles = (data.results || []).filter(
-    (article) =>
-      article.title &&
-      article.description &&
-      article.description.trim() !== ""
-  );
+  const filteredArticles = (data.results || [])
+    .filter(
+      (article) =>
+        article.title &&
+        article.description &&
+        article.description.trim() !== ""
+    )
+    .filter(
+      (article, index, self) =>
+        index ===
+        self.findIndex(
+          (a) =>
+            a.title === article.title ||
+            a.link === article.link
+        )
+    );
+
+  setArticles(filteredArticles);
+})
 
   setArticles(filteredArticles);
 })
